@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Letter Scatter Tool</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    input {
+      width: 300px;
+      margin: 10px;
+    }
+
+    #colorSlider {
+      appearance: none;
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(
+        to right,
+        red,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        magenta,
+        red
+      );
+    }
+
+    #colorSlider::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid black;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+
+    button {
+      margin: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Letter Scatter Tool</h1>
+
+  <p>
+    Color
+    <input
+      id="colorSlider"
+      type="range"
+      min="0"
+      max="360"
+      value="30"
+    >
+  </p>
+
+  <p>
+    Letter Size
+    <input
+      id="sizeSlider"
+      type="range"
+      min="10"
+      max="100"
+      value="40"
+    >
+  </p>
+
+  <button id="downloadButton">Download Image</button>
+
+  <script src="sketch.js"></script>
+  <script src="tool.js"></script>
+
+</body>
+</html>
