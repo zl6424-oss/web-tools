@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Letter Scatter Tool</title>
+
+  <script src="p5.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #eef4f8;
+      color: #17212b;
+    }
+
+    header {
+      padding: 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 8px;
+    }
+
+    header p {
+      margin: 0;
+      color: #536576;
+    }
+
+    .workspace {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 0 30px 40px;
+    }
+
+    .controls {
+      width: 320px;
+      padding: 24px;
+      background: white;
+      border: 1px solid #cbd8e2;
+      border-radius: 12px;
+    }
+
+    .control {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    #colorSlider {
+      appearance: none;
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(
+        to right,
+        red,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        magenta,
+        red
+      );
+    }
+
+    #colorSlider::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid black;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px 16px;
+      border: 0;
+      border-radius: 6px;
+      background: #245b82;
+      color: white;
+      cursor: pointer;
+    }
+
+    #canvasArea canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 1000px) {
+      .workspace {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .controls {
+        width: min(600px, 100%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Letter Scatter Tool</h1>
+    <p>Change the controls to create your own letter pattern.</p>
+  </header>
+
+  <main class="workspace">
+    <section class="controls">
+      <div class="control">
+        <label for="colorSlider">Color</label>
+        <input
+          id="colorSlider"
+          type="range"
+          min="0"
+          max="360"
+          value="30"
+        >
+      </div>
+
+      <div class="control">
+        <label for="sizeSlider">Letter Size</label>
+        <input
+          id="sizeSlider"
+          type="range"
+          min="10"
+          max="100"
+          value="40"
+        >
+      </div>
+
+      <button id="downloadButton">Download Image</button>
+    </section>
+
+    <section id="canvasArea"></section>
+  </main>
+
+  <script src="sketch.js"></script>
+  <script src="tool.js"></script>
+
+</body>
+</html>
