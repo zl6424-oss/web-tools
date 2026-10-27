@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Process documentation for PCom Assistant, a physical computing planning tool for product designers.">
+  <title>PCom Assistant — Process Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="nameplate" href="#top">PCom Assistant</a>
+    <nav aria-label="Page sections">
+      <a href="#problem">Problem</a>
+      <a href="#process">Process</a>
+      <a href="#ai-use">AI Use</a>
+      <a href="#testing">Testing</a>
+      <a href="#next">Next</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">MIDTERM · WORKING DRAFT</p>
+        <h1>Helping a product idea become a first working circuit.</h1>
+        <p class="lead">PCom Assistant is a web tool that helps product designers choose a simple electronic approach, make a short parts list, and prepare a safe first test.</p>
+        <dl class="project-meta">
+          <div><dt>User</dt><dd>Charlie, product designer</dd></div>
+          <div><dt>Focus</dt><dd>Early functional prototyping</dd></div>
+          <div><dt>Current state</dt><dd>Local AI prototype</dd></div>
+        </dl>
+      </div>
+      <figure class="portrait-card">
+        <img src="images/charlie.jpg" alt="Charlie holding a chair prototype">
+        <figcaption>Charlie works comfortably with drawing and 3D form, but functional electronics are a less familiar part of his process.</figcaption>
+      </figure>
+    </section>
+
+    <section id="problem" class="section split-section">
+      <div>
+        <p class="section-number">01 / THE PROBLEM</p>
+        <h2>Where does a functional prototype begin?</h2>
+      </div>
+      <div class="body-copy">
+        <p>Charlie can communicate a product idea through sketches and 3D models. The frustrating point comes when the object needs to do something: light up, move air, respond to a button, or run from a battery.</p>
+        <p>I decided not to make a tool that designs the entire product for him. The narrower goal is to help with the first electronics decisions:</p>
+        <ul>
+          <li>Does this idea need a microcontroller at all?</li>
+          <li>What are the fewest parts needed for the main function?</li>
+          <li>Will the parts fit in the available space?</li>
+          <li>What should be connected and tested first?</li>
+        </ul>
+        <blockquote>“Be simple” became the main rule. A light with one button should not become an ESP32 project unless programmable behavior is actually needed.</blockquote>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <p class="section-number">02 / PROCESS</p>
+      <h2>From a static screen to a conversation</h2>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <span class="step">A</span>
+          <h3>Interface sketch</h3>
+          <p>The first drawing established a project library, a conversation area, and a structured plan on one page. I removed image generation and internal product-layout advice to keep the scope realistic.</p>
+        </article>
+        <article class="process-card">
+          <span class="step">B</span>
+          <h3>Draft 1</h3>
+          <p>The first coded version used sample data. It helped me test the hierarchy of the plan before connecting an API: solution, parts, wiring, dimensions, and first test.</p>
+        </article>
+        <article class="process-card">
+          <span class="step">C</span>
+          <h3>AI conversation</h3>
+          <p>With help from Codex, the next version connected the DeepSeek API. The API key stays outside the browser. The assistant asks one question at a time, then returns a structured plan.</p>
+        </article>
+      </div>
+
+      <div class="image-pair">
+        <figure>
+          <img src="images/interface-sketch.png" alt="Early interface concept for PCom Assistant">
+          <figcaption>Early interface sketch</figcaption>
+        </figure>
+        <figure>
+          <img src="images/draft-1.png" alt="First static coded version of PCom Assistant">
+          <figcaption>Draft 1 with sample content</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="ai-use" class="section ai-disclosure">
+      <p class="section-number">03 / AI USE DISCLOSURE</p>
+      <h2>What I made, and where AI helped.</h2>
+      <p class="disclosure-intro">I designed and built the first static draft myself. I used Codex later for the more difficult technical parts required to turn that draft into a working AI tool. DeepSeek is also part of the finished tool: it generates the conversation and plan when someone uses it.</p>
+
+      <div class="ai-grid">
+        <article class="ai-card">
+          <p class="card-label">MADE BY ME</p>
+          <h3>Concept and first draft</h3>
+          <ul>
+            <li>Identified Charlie as the user and defined the problem.</li>
+            <li>Decided to focus on simple functional prototyping.</li>
+            <li>Drew the interface sketch and planned the information hierarchy.</li>
+            <li>Built the first static HTML, CSS, and JavaScript draft.</li>
+            <li>Chose what the Plan should contain and tested different product ideas.</li>
+          </ul>
+        </article>
+
+        <article class="ai-card codex-card">
+          <p class="card-label">CODEX ASSISTANCE</p>
+          <h3>Technical implementation</h3>
+          <ul>
+            <li>Helped connect the DeepSeek API to the web tool.</li>
+            <li>Helped keep the API key outside the browser code.</li>
+            <li>Helped build the full-page English and Chinese translation function.</li>
+            <li>Helped create the project library: save, pin, rename, and delete.</li>
+            <li>Helped with response validation, debugging, deployment, and Mac packaging.</li>
+          </ul>
+        </article>
+
+        <article class="ai-card">
+          <p class="card-label">DEEPSEEK IN THE TOOL</p>
+          <h3>Conversation and Plan generation</h3>
+          <ul>
+            <li>Asks the user for missing project constraints.</li>
+            <li>Suggests the simplest functional circuit it can find.</li>
+            <li>Returns parts, reference sizes, wiring, and first-test steps.</li>
+            <li>Does not design the page or decide the project scope.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="responsibility-note"><strong>My role remained central:</strong> I set the scope, chose which features to keep, tested the answers, identified unsafe or overcomplicated suggestions, and decided how the tool should change.<br><br>Codex also helped me organize and edit this process documentation based on my project notes, decisions, and testing results.</p>
+    </section>
+
+    <section class="section output-section">
+      <div>
+        <p class="section-number">04 / CURRENT OUTPUT</p>
+        <h2>A short plan, not a complete product design.</h2>
+        <p>The current tool keeps the conversation and the plan side by side. A generated plan can include:</p>
+        <ol class="output-list">
+          <li><span>01</span> Simplest solution</li>
+          <li><span>02</span> Shopping list with reference sizes</li>
+          <li><span>03</span> Simple functional flow</li>
+          <li><span>04</span> Basic low-voltage wiring</li>
+          <li><span>05</span> First test steps</li>
+          <li><span>06</span> Optional ESP32-C3 upgrade</li>
+        </ol>
+        <p class="note">The ESP32 section is only generated when the requested behavior needs sensing, wireless control, timing, or programming.</p>
+      </div>
+      <figure class="screen-frame">
+        <img src="images/working-version.png" alt="Current PCom Assistant interface with chat and prototype plan">
+        <figcaption>Current working version. The visual style was reduced from a bright game-like interface to a quieter workshop palette.</figcaption>
+      </figure>
+    </section>
+
+    <section id="testing" class="section">
+      <p class="section-number">05 / TESTING</p>
+      <h2>The mistakes were useful.</h2>
+      <div class="test-table" role="table" aria-label="Prototype tests and changes">
+        <div class="test-row test-head" role="row">
+          <span role="columnheader">Test</span><span role="columnheader">What happened</span><span role="columnheader">Change</span>
+        </div>
+        <div class="test-row" role="row">
+          <strong role="cell">Small fan</strong>
+          <p role="cell">The assistant correctly recognized that a basic fan did not need a microcontroller, but it still needed clearer power and size information.</p>
+          <p role="cell">Ask only for missing constraints and keep the controller optional.</p>
+        </div>
+        <div class="test-row" role="row">
+          <strong role="cell">One-button flashlight</strong>
+          <p role="cell">The first answer proposed two AAA cells plus a boost module. A second pass found a simpler three-cell circuit, but the suggested LED current was too high.</p>
+          <p role="cell">Add a simplicity audit, conservative LED-current rules, and a required resistor calculation.</p>
+        </div>
+        <div class="test-row" role="row">
+          <strong role="cell">Wearable safety light</strong>
+          <p role="cell">The assistant repeated questions that had already been answered, and early language switching translated only part of the page.</p>
+          <p role="cell">Preserve conversation context and translate the full interface, messages, project names, and plan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section changes-section">
+      <div>
+        <p class="section-number">06 / ITERATION</p>
+        <h2>Changes made after testing</h2>
+      </div>
+      <ul class="change-list">
+        <li><strong>Shorter answers.</strong> The assistant now gives a compact plan instead of a long essay.</li>
+        <li><strong>Safety limits.</strong> Low-voltage guidance only; no mains wiring; conservative current assumptions.</li>
+        <li><strong>Fewer components.</strong> Normally no more than six main parts, unless every extra part is necessary.</li>
+        <li><strong>Size honesty.</strong> Unknown dimensions are marked “Confirm seller dimensions” instead of being invented.</li>
+        <li><strong>Project memory.</strong> Plans can be saved locally, renamed, pinned, and deleted.</li>
+        <li><strong>Full-page language switching.</strong> English is the default, with Chinese available for the entire page.</li>
+        <li><strong>Usable layout.</strong> Chat and Plan scroll independently, so the message field stays visible at normal desktop sizes.</li>
+      </ul>
+    </section>
+
+    <section id="next" class="section next-section">
+      <p class="section-number">07 / WHAT IS NEXT</p>
+      <div class="next-grid">
+        <div>
+          <h2>Still a draft</h2>
+          <p>The tool can already hold a conversation and generate a structured prototype plan, but it is not a replacement for a datasheet or an experienced electronics review.</p>
+        </div>
+        <div>
+          <h3>Next tests</h3>
+          <ul>
+            <li>Test the tool with Charlie using one of his real product ideas.</li>
+            <li>Compare generated component dimensions with seller listings.</li>
+            <li>Make confirmed requirements visible so questions are not repeated.</li>
+            <li>Test whether the first wiring plan produces a working breadboard prototype.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What I learned</h3>
+          <p>The most useful part of this project is not generating more ideas. It is reducing uncertainty at the moment when a visual concept needs to become physical and functional.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>PCom Assistant · Midterm process documentation · 2026</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+</body>
+</html>
+
+
+
+
