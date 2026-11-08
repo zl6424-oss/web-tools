@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCom Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div>
+      <h1>PCom<br>Assistant</h1>
+      <button id="newProject" class="primary new-project">＋ <span data-word="newProject">NEW PROJECT</span></button>
+      <section class="group"><h2 data-word="pinned">PINNED</h2><div id="pinnedList"></div></section>
+      <section class="group"><h2 data-word="recent">RECENT</h2><div id="recentList"></div></section>
+    </div>
+    <div class="sidebar-bottom">
+      <button id="importButton" class="plain-button">⇧ <span data-word="importProject">Import Project</span></button>
+      <input id="importFile" type="file" accept="application/json" hidden>
+      <button id="languageButton" class="plain-button language"><span id="enLabel">EN</span> | <span id="zhLabel">中文</span></button>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="topbar">
+      <div>
+        <p class="small-label mono" data-word="productLabel">PHYSICAL COMPUTING PLANNER</p>
+        <div class="title-row"><h2 id="projectTitle">Portable Fan</h2><span class="saved mono">● <span data-word="saved">SAVED LOCALLY</span></span></div>
+      </div>
+      <div class="actions">
+        <button id="renameButton" class="secondary" data-word="rename">RENAME</button>
+        <button id="pinButton" class="secondary">● <span data-word="pin">PIN</span></button>
+        <button id="exportButton" class="secondary">⇩ <span data-word="export">EXPORT</span></button>
+        <button id="deleteButton" class="danger" data-word="delete">DELETE</button>
+      </div>
+    </header>
+    <div class="skill-strip">
+      <strong data-word="aiSkills">AI SKILLS</strong>
+      <span data-word="skillScope">SCOPE</span>
+      <span data-word="skillSimple">SIMPLIFY</span>
+      <span data-word="skillParts">PARTS</span>
+      <span data-word="skillPower">POWER</span>
+      <span data-word="skillSize">SIZE</span>
+      <span data-word="skillWiring">WIRING</span>
+      <span data-word="skillShop">SHOPPING</span>
+      <span data-word="skillTest">TEST</span>
+    </div>
+
+    <nav class="mobile-tabs" aria-label="View switch">
+      <button id="showChat" class="tab active" data-word="chat">CHAT</button>
+      <button id="showPlan" class="tab" data-word="plan">PLAN</button>
+    </nav>
+
+    <div class="main-grid">
+      <section id="chatPanel" class="panel chat-panel">
+        <div class="panel-head">
+          <div><p class="number mono">01</p><h3 data-word="conversation">CONVERSATION</h3></div>
+          <span id="connectionStatus" class="status mono" data-word="ready">READY</span>
+        </div>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div class="suggestions" id="suggestions">
+          <button data-prompt-en="I want to make a portable fan." data-prompt-zh="我想制作一个便携式风扇。" data-word="suggestionFan">Portable fan</button>
+          <button data-prompt-en="I want to make a simple desk light." data-prompt-zh="我想制作一个简单的桌灯。" data-word="suggestionLight">Desk light</button>
+          <button data-prompt-en="Help me simplify my current idea." data-prompt-zh="请帮我简化现在的想法。" data-word="suggestionSimple">Simplify my idea</button>
+        </div>
+        <form id="chatForm" class="composer">
+          <label for="chatInput" data-word="messageLabel">DESCRIBE YOUR IDEA OR ASK FOR A CHANGE</label>
+          <textarea id="chatInput" rows="3" placeholder="Example: I want to make a small battery-powered fan."></textarea>
+          <div class="composer-bottom">
+            <p data-word="chatHint">The assistant asks one question at a time.</p>
+            <button id="sendButton" class="primary" type="submit"><span data-word="send">SEND</span> →</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="planPanel" class="panel plan-panel">
+        <div class="panel-head">
+          <div><p class="number mono">02</p><h3 data-word="prototypePlan">PROTOTYPE PLAN</h3></div>
+          <button id="downloadPlan" class="secondary small" data-word="download">SAVE PDF</button>
+        </div>
+
+        <div id="emptyPlan" class="empty-plan">
+          <div class="pixel-icon">?</div>
+          <h4 data-word="noPlan">NO PLAN YET</h4>
+          <p data-word="noPlanCopy">Talk with the assistant. A simple plan will appear here when the idea is clear.</p>
+        </div>
+
+        <div id="planContent" hidden>
+          <section class="summary">
+            <div><span data-word="idea">Idea</span><strong id="idea"></strong></div>
+            <div><span data-word="space">Space</span><strong id="space"></strong></div>
+            <div><span data-word="power">Power</span><strong id="power"></strong></div>
+            <div><span data-word="budget">Budget</span><strong id="budget"></strong></div>
+          </section>
+          <article class="plan-card highlight-card"><h4 data-word="solution">SIMPLEST SOLUTION</h4><p id="solutionText"></p><p id="whyText" class="success"></p></article>
+          <article class="plan-card">
+            <div class="card-title"><h4 data-word="shopping">SHOPPING LIST</h4><span data-word="sixParts">Usually 6 main parts or fewer</span></div>
+            <div class="table-wrap"><table><thead><tr><th data-word="component">COMPONENT</th><th data-word="quantity">QTY</th><th data-word="size">SIZE</th><th data-word="reason">WHY</th></tr></thead><tbody id="shoppingBody"></tbody></table></div>
+          </article>
+          <article class="plan-card"><h4 data-word="how">HOW IT WORKS</h4><div id="flow" class="flow"></div></article>
+          <article class="plan-card">
+            <h4 data-word="wiring">BASIC WIRING</h4>
+            <div class="table-wrap"><table><thead><tr><th data-word="from">FROM</th><th data-word="to">TO</th><th data-word="note">NOTE</th></tr></thead><tbody id="wiringBody"></tbody></table></div>
+          </article>
+          <article class="plan-card"><h4 data-word="test">FIRST TEST</h4><ol id="testList" class="test-list"></ol></article>
+          <details id="espDetails" hidden><summary data-word="espUpgrade">OPTIONAL ESP32-C3 UPGRADE</summary><p id="espText"></p></details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="confirmDialog">
+    <form method="dialog">
+      <h3 data-word="deleteProject">DELETE PROJECT?</h3>
+      <p id="deleteCopy"></p>
+      <div class="dialog-actions"><button value="cancel" class="secondary" data-word="cancel">CANCEL</button><button id="confirmDelete" value="confirm" class="danger" data-word="delete">DELETE</button></div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

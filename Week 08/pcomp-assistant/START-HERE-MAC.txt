@@ -1,0 +1,51 @@
+PCom Assistant — Mac Setup
+
+FIRST TIME
+
+1. Extract this ZIP file.
+2. If Node.js is not installed, download the LTS version from:
+   https://nodejs.org
+3. Open the Terminal app.
+4. Type "cd " including the space, then drag the PCom-Assistant-Mac folder
+   into the Terminal window and press Return.
+5. Run:
+
+   bash setup-and-start-mac.sh
+
+6. The first time, enter your DeepSeek API key and press Return.
+   The key will not be visible while you type. This is normal.
+7. Keep Terminal open and open the exact localhost address it displays.
+
+LATER USE
+
+Open Terminal, enter the project folder again, and run:
+
+   bash setup-and-start-mac.sh
+
+Stop the server with Control+C.
+
+IMPORTANT
+
+- The ZIP does not contain your API key.
+- The script creates .env.local privately on your Mac.
+- Never upload .env.local to GitHub.
+- Do not double-click index.html when using AI.
+- If port 3000 is busy, the server automatically selects another port.
+
+MOVE OLD CONVERSATIONS AND PLANS
+
+On the old computer, click Export inside PCom Assistant. Move that JSON file
+onto the Mac, then click Import inside PCom Assistant.
+
+中文步骤
+
+1. 解压 ZIP。
+2. 如果 Mac 没有 Node.js，从 https://nodejs.org 安装 LTS 版本。
+3. 打开“终端”应用。
+4. 输入 cd 和一个空格，把 PCom-Assistant-Mac 文件夹拖进终端，按回车。
+5. 输入：bash setup-and-start-mac.sh
+6. 第一次运行时输入 DeepSeek API Key。输入过程中不会显示字符，这是正常的。
+7. 不要关闭终端；在浏览器打开终端显示的 localhost 地址。
+8. 停止服务器时按 Control+C。
+
+旧电脑里的对话和 Plan 需要先 Export，然后在 Mac 上 Import。
